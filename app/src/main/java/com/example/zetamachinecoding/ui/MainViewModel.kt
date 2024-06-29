@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.zetamachinecoding.data.ApiService
 import com.example.zetamachinecoding.domain.Movie
 import com.example.zetamachinecoding.data.MoviesRepositoryImpl
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -36,8 +37,8 @@ class MainViewModel : ViewModel() {
     val trendingMovieList = MutableLiveData<List<Movie>>()
 
     fun getTrendingMovies(page: String = "day") {
-        viewModelScope.launch {
-            trendingMovieList.value = repository.fetchMovies(page).results
+        viewModelScope.launch(Dispatchers.Default) {
+            trendingMovieList.postValue(repository.fetchMovies(page).results)
         }
     }
 
