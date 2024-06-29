@@ -35,9 +35,9 @@ class MainViewModel : ViewModel() {
 
     val trendingMovieList = MutableLiveData<List<Movie>>()
 
-    fun getTrendingMovies() {
+    fun getTrendingMovies(page: String = "day") {
         viewModelScope.launch {
-            trendingMovieList.value = repository.fetchMovies().results
+            trendingMovieList.value = repository.fetchMovies(page).results
         }
     }
 

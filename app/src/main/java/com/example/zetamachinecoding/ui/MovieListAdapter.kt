@@ -14,7 +14,7 @@ class MovieListAdapter(private val movieList: List<Movie>): RecyclerView.Adapter
     class MovieViewHolder(val binding: MovieItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
             with(binding) {
-                val url = "$imageBaseUrl${movie.backdrop_path}"
+                val url = "$imageBaseUrl${movie.poster_path}"
                 Glide.with(moviePoster).load(url).into(moviePoster)
                 name.text = movie.title
                 year.text = movie.release_date

@@ -4,8 +4,8 @@ import com.example.zetamachinecoding.domain.MovieResponse
 import com.example.zetamachinecoding.domain.MoviesRepository
 
 class MoviesRepositoryImpl(val service: ApiService): MoviesRepository {
-    override suspend fun fetchMovies(): MovieResponse {
+    override suspend fun fetchMovies(page: String): MovieResponse {
         //context switching is not required since retrofit will do it.
-        return service.getTrendingMovies()
+        return service.getTrendingMovies(page)
     }
 }
